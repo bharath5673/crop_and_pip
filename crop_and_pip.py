@@ -4,7 +4,6 @@ import numpy as np
 
 
 def picture_in_picture(main_image, overlay_image, pt1, pt2, img_ratio=3, border_size=3, x_margin=30, y_offset_adjust=-100):
-    # Draw dashed rectangle around the ROI
     x1, y1 = pt1
     x2, y2 = pt2
     dash_length = 10
@@ -69,8 +68,6 @@ video_path = "FUEGO Volcano ERUPTS in Shocking Display of Nature's Fury - 8K Ult
 cap = cv2.VideoCapture(video_path)
 frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-frame_width = 1080
-frame_height = 720
 fps = int(cap.get(cv2.CAP_PROP_FPS))
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec for MP4 format
 out = cv2.VideoWriter('output_video.mp4', fourcc, fps, (frame_width, frame_height))
