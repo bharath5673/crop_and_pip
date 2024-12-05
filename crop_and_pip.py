@@ -110,7 +110,6 @@ cv2.setMouseCallback('Video Frame', draw_rectangle)
 
 while cap.isOpened():
     ret, frame = cap.read()
-    frame = cv2.resize(frame, (frame_width, frame_height))
     frame_ = frame.copy()
     
     if not ret:
