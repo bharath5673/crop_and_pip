@@ -8,9 +8,9 @@ def picture_in_picture(main_image, overlay_image, pt1, pt2, img_ratio=3, x_margi
     x2, y2 = pt2
     ln = int(main_image.shape[1]//1000)
     ln_ = 2 if ln <= 1 else ln
-    dash_length = 10 * ln_
+    dash_length = 8 * ln_
     thickness = 1 * ln_
-    border_size=5 * ln_
+    border_size = 4 * ln_
     main_image_ = main_image.copy()
 
     # Resize the overlay image to 1/img_ratio of the main image height
