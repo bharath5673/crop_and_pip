@@ -3,11 +3,14 @@ import numpy as np
 
 
 
-def picture_in_picture(main_image, overlay_image, pt1, pt2, img_ratio=3, border_size=3, x_margin=30, y_offset_adjust=-100):
+def picture_in_picture(main_image, overlay_image, pt1, pt2, img_ratio=3, x_margin=30, y_offset_adjust=-100):
     x1, y1 = pt1
     x2, y2 = pt2
-    dash_length = 10
-    thickness = 1
+    ln = int(main_image.shape[1]//1000)
+    ln_ = 2 if ln <= 1 else ln
+    dash_length = 10 * ln_
+    thickness = 1 * ln_
+    border_size=5 * ln_
     main_image_ = main_image.copy()
 
     # Resize the overlay image to 1/img_ratio of the main image height
@@ -63,6 +66,8 @@ def picture_in_picture(main_image, overlay_image, pt1, pt2, img_ratio=3, border_
 
 # Path to the video file
 video_path = "FUEGO Volcano ERUPTS in Shocking Display of Nature's Fury - 8K Ultra HD Pure Quality - 8K Ultra HD Pure Quality (1080p60, h264, youtube).mp4"
+# video_path = "2020 LG NanoCell 8K l  Pure Colors 8K HDR 60fps_.mp4"
+
 
 # Create a video capture object
 cap = cv2.VideoCapture(video_path)
@@ -105,7 +110,8 @@ def draw_rectangle(event, x, y, flags, param):
         print(f"ROI selected: {roi_coords}")
 
 # Set the mouse callback
-cv2.namedWindow('Video Frame')
+cv2.namedWindow('Video Frame', cv2.WINDOW_NORMAL)  # Allows resizing
+cv2.resizeWindow('Video Frame', 1280, 800)  # Set window size to 800x600 pixels
 cv2.setMouseCallback('Video Frame', draw_rectangle)
 
 while cap.isOpened():
